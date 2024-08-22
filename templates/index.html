@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="refresh" content="60" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photovoltaic Forecasting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.highcharts.com/highcharts.js"></script> <!-- Load Highcharts from CDN -->
+    <script src="{{ url_for('static', filename='js/production_chart.js') }}"></script> <!-- Load custom JS -->
+</head>
+<body>
+    <!-- Application title -->
+    <header class="app-title">
+        Photovoltaic Forecasting System
+    </header>
+
+    <div class="container">
+        <!-- Column for the chart -->
+        <div class="chart-column">
+            <div id="production-chart"></div>
+        </div>
+
+        <!-- Column for the stats -->
+        <div class="stats-column">
+            <div class="stat-box">
+                <div class="number">{{ production_actual }} kW</div>
+                <div class="description">Actual production</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">{{ production_next_hour }} kW</div>
+                <div class="description">Next hour production</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">{{ production_next_3hours }} kWh</div>
+                <div class="description">Next 3 hours cumulative production</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">{{ total_production_24 }} kWh</div>
+                <div class="description">Next 24 hours cumulative production</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Pass the hourly production data and index labels from Flask to JavaScript
+        var hourlyProduction = {{ hourly_production | safe }};
+
+        // Call the function to generate the chart with the passed data
+        generateProductionChart(hourlyProduction);
+    </script>
+</body>
+</html>
