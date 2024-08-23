@@ -1,6 +1,7 @@
 {
   "latitude": 39.5855,
   "longitude": 18.1459,
+  "forecasting_days": 1,
   "pdc0_inverter": 10120,
   "array_list": [
     {

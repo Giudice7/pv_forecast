@@ -19,7 +19,7 @@ def index():
 
     pv_plant.get_pvsystem(pdc0_inverter=config["pdc0_inverter"])
     pv_plant.get_modelchain()
-    pv_plant.get_weather_forecast()
+    pv_plant.get_weather_forecast(forecasting_days=config["forecasting_days"])
     pv_plant.get_pvplant_production()
     data = pv_plant.pv_production
 

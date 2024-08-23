@@ -86,13 +86,13 @@ class PVPlant:
             spectral_model='no_loss'
         )
 
-    def get_weather_forecast(self):
+    def get_weather_forecast(self, forecasting_days: int = 1):
         """
         Gets the weather forecasts from the APIs
-        :return:
+        :param forecasting_days: Number of days to forecast
         """
         start_time = datetime.datetime.now().replace(minute=0, second=0, microsecond=0)
-        end_time = start_time + datetime.timedelta(days=1)
+        end_time = start_time + datetime.timedelta(days=forecasting_days)
         start_hour = start_time.strftime("%Y-%m-%dT%H:%M")
         end_hour = end_time.strftime("%Y-%m-%dT%H:%M")
         self.weather = get_weather_forecast(self.location.latitude, self.location.longitude, start_hour, end_hour)
